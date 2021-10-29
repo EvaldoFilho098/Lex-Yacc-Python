@@ -86,7 +86,8 @@ t_fcha = r'\}'
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'[\n][\n]*'
-    t.lexer.lineno += len(t.value)
+    #t.lexer.lineno += len(t.value)
+    pass
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
@@ -107,14 +108,10 @@ def t_comment2(t):
 # Build the lexer
 lexer = lex.lex()
 
-# Test it out
-data = ''' 
-int main(){
-    int x = 21;
-    // oi carai 
-}
+# Testar
+
 '''
-'''
+data = 'int main(){}'
 # Give the lexer some input
 lexer.input(data)
 

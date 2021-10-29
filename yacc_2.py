@@ -271,14 +271,6 @@ def p_empty(p):
 def p_error(p):
     print("Syntax error in input!")
 
-#def t_comment1(t):
-#    r'(/\*(.|\n)*?\*/)'
-#    pass
-
-# Line comment
-#def t_comment2(t):
-#    r'(//.*?(\n|$))'
-#    pass
 
 # Build the parser
 parser = yacc.yacc()
