@@ -1,5 +1,6 @@
 # Yacc example
  
+from ply.lex import Lexer
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
@@ -7,14 +8,12 @@ from lex import tokens
 
 def p_programa(p):
     'programa : lista_declaracao'
-    #p[0] = p[1]
 
 def p_lista_declaracao(p):
     """
     lista_declaracao : lista_declaracao declaracao
                      | declaracao 
     """
-
 def p_declaracao(p):
     """
     declaracao : declaracao_variaveis
@@ -195,7 +194,14 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-while True:
-    s = input('calc > ')
-    result = parser.parse(s)
-    print(result)
+data = '''
+int main(){
+    int x = 21;
+}
+'''
+from lex import * 
+#while True:
+#    s = input('> ')
+result = parser.parse(data, lexer=lexer,debug=True)
+
+#    print(result)
