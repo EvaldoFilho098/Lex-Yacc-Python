@@ -268,8 +268,14 @@ def p_empty(p):
      pass 
 
 # Error rule for syntax errors
+#def p_error(p):
+#    print("\n\n\n - - - - - - - - - - Syntax error! - - - - - - - - - -\n\n\n")
+
 def p_error(p):
-    print("Syntax error in input!")
+    print("\n\n\n - - - - - - - - - - Syntax error! - - - - - - - - - -\n\n\n")
+    if p:
+        print("End of File!")
+        parser.restart()
 
 
 # Build the parser

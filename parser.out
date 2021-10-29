@@ -1,0 +1,2316 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_declaracao
+Rule 2     lista_declaracao -> declaracao LD
+Rule 3     LD -> declaracao LD
+Rule 4     LD -> empty
+Rule 5     declaracao -> declaracao_variaveis
+Rule 6     declaracao -> declaracao_funcoes
+Rule 7     declaracao_funcoes -> tipo ID apar parametros fpar declaracao_composta
+Rule 8     declaracao_variaveis -> tipo ID DV
+Rule 9     tipo -> INT
+Rule 10    tipo -> VOID
+Rule 11    DV -> pv
+Rule 12    DV -> acol numero fcol pv
+Rule 13    parametros -> apar PR
+Rule 14    parametros -> empty
+Rule 15    declaracao_composta -> acha declaracoes_locais lista_comandos fcha
+Rule 16    PR -> lista_parametros fpar
+Rule 17    PR -> VOID fpar
+Rule 18    lista_comandos -> LC
+Rule 19    lista_parametros -> param LP
+Rule 20    LC -> comandos LC
+Rule 21    LC -> empty
+Rule 22    LP -> vir param LP
+Rule 23    LP -> empty
+Rule 24    param -> tipo ID P
+Rule 25    comandos -> declaracao_expressao
+Rule 26    comandos -> declaracao_composta
+Rule 27    comandos -> declaracao_selecao
+Rule 28    comandos -> declaracao_iteracao
+Rule 29    comandos -> declaracao_retorno
+Rule 30    P -> acol fcol
+Rule 31    P -> empty
+Rule 32    declaracao_expressao -> expressao pv
+Rule 33    declaracao_expressao -> pv
+Rule 34    declaracao_selecao -> IF apar expressao fpar comandos DS
+Rule 35    declaracao_iteracao -> WHILE apar expressao fpar comandos
+Rule 36    declaracao_retorno -> RETURN DR
+Rule 37    expressao -> variavel atr expressao
+Rule 38    expressao -> expressao_simples
+Rule 39    declaracoes_locais -> DL
+Rule 40    DS -> ELSE comandos
+Rule 41    DS -> empty
+Rule 42    DR -> pv
+Rule 43    DR -> expressao pv
+Rule 44    variavel -> ID V
+Rule 45    expressao_simples -> soma_expressao ES
+Rule 46    DL -> declaracao_variaveis DL
+Rule 47    DL -> empty
+Rule 48    V -> acol expressao fcol
+Rule 49    V -> empty
+Rule 50    soma_expressao -> termo SE
+Rule 51    ES -> op_relacional soma_expressao ES
+Rule 52    ES -> empty
+Rule 53    termo -> fator T
+Rule 54    SE -> soma termo SE
+Rule 55    SE -> empty
+Rule 56    op_relacional -> menig
+Rule 57    op_relacional -> men
+Rule 58    op_relacional -> mai
+Rule 59    op_relacional -> maiig
+Rule 60    op_relacional -> ig
+Rule 61    op_relacional -> dif
+Rule 62    soma -> add
+Rule 63    soma -> sub
+Rule 64    mult -> mlt
+Rule 65    mult -> divv
+Rule 66    fator -> apar expressao fpar
+Rule 67    fator -> variavel
+Rule 68    fator -> ativacao
+Rule 69    fator -> numero
+Rule 70    T -> mult fator T
+Rule 71    T -> empty
+Rule 72    ativacao -> ID apar argumentos fpar
+Rule 73    argumentos -> lista_argumentos
+Rule 74    argumentos -> empty
+Rule 75    lista_argumentos -> expressao LA
+Rule 76    LA -> vir expressao LA
+Rule 77    LA -> empty
+Rule 78    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ELSE                 : 40
+ID                   : 7 8 24 44 72
+IF                   : 34
+INT                  : 9
+RETURN               : 36
+VOID                 : 10 17
+WHILE                : 35
+acha                 : 15
+acol                 : 12 30 48
+add                  : 62
+apar                 : 7 13 34 35 66 72
+atr                  : 37
+dif                  : 61
+divv                 : 65
+error                : 
+fcha                 : 15
+fcol                 : 12 30 48
+fpar                 : 7 16 17 34 35 66 72
+ig                   : 60
+mai                  : 58
+maiig                : 59
+men                  : 57
+menig                : 56
+mlt                  : 64
+numero               : 12 69
+pv                   : 11 12 32 33 42 43
+sub                  : 63
+vir                  : 22 76
+
+Nonterminals, with rules where they appear
+
+DL                   : 39 46
+DR                   : 36
+DS                   : 34
+DV                   : 8
+ES                   : 45 51
+LA                   : 75 76
+LC                   : 18 20
+LD                   : 2 3
+LP                   : 19 22
+P                    : 24
+PR                   : 13
+SE                   : 50 54
+T                    : 53 70
+V                    : 44
+argumentos           : 72
+ativacao             : 68
+comandos             : 20 34 35 40
+declaracao           : 2 3
+declaracao_composta  : 7 26
+declaracao_expressao : 25
+declaracao_funcoes   : 6
+declaracao_iteracao  : 28
+declaracao_retorno   : 29
+declaracao_selecao   : 27
+declaracao_variaveis : 5 46
+declaracoes_locais   : 15
+empty                : 4 14 21 23 31 41 47 49 52 55 71 74 77
+expressao            : 32 34 35 37 43 48 66 75 76
+expressao_simples    : 38
+fator                : 53 70
+lista_argumentos     : 73
+lista_comandos       : 15
+lista_declaracao     : 1
+lista_parametros     : 16
+mult                 : 70
+op_relacional        : 51
+param                : 19 22
+parametros           : 7
+programa             : 0
+soma                 : 54
+soma_expressao       : 45 51
+termo                : 50 54
+tipo                 : 7 8 24
+variavel             : 37 67
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_declaracao
+    (2) lista_declaracao -> . declaracao LD
+    (5) declaracao -> . declaracao_variaveis
+    (6) declaracao -> . declaracao_funcoes
+    (8) declaracao_variaveis -> . tipo ID DV
+    (7) declaracao_funcoes -> . tipo ID apar parametros fpar declaracao_composta
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    programa                       shift and go to state 1
+    lista_declaracao               shift and go to state 2
+    declaracao                     shift and go to state 3
+    declaracao_variaveis           shift and go to state 4
+    declaracao_funcoes             shift and go to state 5
+    tipo                           shift and go to state 6
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_declaracao .
+
+    $end            reduce using rule 1 (programa -> lista_declaracao .)
+
+
+state 3
+
+    (2) lista_declaracao -> declaracao . LD
+    (3) LD -> . declaracao LD
+    (4) LD -> . empty
+    (5) declaracao -> . declaracao_variaveis
+    (6) declaracao -> . declaracao_funcoes
+    (78) empty -> .
+    (8) declaracao_variaveis -> . tipo ID DV
+    (7) declaracao_funcoes -> . tipo ID apar parametros fpar declaracao_composta
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    $end            reduce using rule 78 (empty -> .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    declaracao                     shift and go to state 9
+    LD                             shift and go to state 10
+    empty                          shift and go to state 11
+    declaracao_variaveis           shift and go to state 4
+    declaracao_funcoes             shift and go to state 5
+    tipo                           shift and go to state 6
+
+state 4
+
+    (5) declaracao -> declaracao_variaveis .
+
+    INT             reduce using rule 5 (declaracao -> declaracao_variaveis .)
+    VOID            reduce using rule 5 (declaracao -> declaracao_variaveis .)
+    $end            reduce using rule 5 (declaracao -> declaracao_variaveis .)
+
+
+state 5
+
+    (6) declaracao -> declaracao_funcoes .
+
+    INT             reduce using rule 6 (declaracao -> declaracao_funcoes .)
+    VOID            reduce using rule 6 (declaracao -> declaracao_funcoes .)
+    $end            reduce using rule 6 (declaracao -> declaracao_funcoes .)
+
+
+state 6
+
+    (8) declaracao_variaveis -> tipo . ID DV
+    (7) declaracao_funcoes -> tipo . ID apar parametros fpar declaracao_composta
+
+    ID              shift and go to state 12
+
+
+state 7
+
+    (9) tipo -> INT .
+
+    ID              reduce using rule 9 (tipo -> INT .)
+
+
+state 8
+
+    (10) tipo -> VOID .
+
+    ID              reduce using rule 10 (tipo -> VOID .)
+
+
+state 9
+
+    (3) LD -> declaracao . LD
+    (3) LD -> . declaracao LD
+    (4) LD -> . empty
+    (5) declaracao -> . declaracao_variaveis
+    (6) declaracao -> . declaracao_funcoes
+    (78) empty -> .
+    (8) declaracao_variaveis -> . tipo ID DV
+    (7) declaracao_funcoes -> . tipo ID apar parametros fpar declaracao_composta
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    $end            reduce using rule 78 (empty -> .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    declaracao                     shift and go to state 9
+    LD                             shift and go to state 13
+    empty                          shift and go to state 11
+    declaracao_variaveis           shift and go to state 4
+    declaracao_funcoes             shift and go to state 5
+    tipo                           shift and go to state 6
+
+state 10
+
+    (2) lista_declaracao -> declaracao LD .
+
+    $end            reduce using rule 2 (lista_declaracao -> declaracao LD .)
+
+
+state 11
+
+    (4) LD -> empty .
+
+    $end            reduce using rule 4 (LD -> empty .)
+
+
+state 12
+
+    (8) declaracao_variaveis -> tipo ID . DV
+    (7) declaracao_funcoes -> tipo ID . apar parametros fpar declaracao_composta
+    (11) DV -> . pv
+    (12) DV -> . acol numero fcol pv
+
+    apar            shift and go to state 15
+    pv              shift and go to state 16
+    acol            shift and go to state 17
+
+    DV                             shift and go to state 14
+
+state 13
+
+    (3) LD -> declaracao LD .
+
+    $end            reduce using rule 3 (LD -> declaracao LD .)
+
+
+state 14
+
+    (8) declaracao_variaveis -> tipo ID DV .
+
+    INT             reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    VOID            reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    $end            reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    pv              reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    acha            reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    IF              reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    WHILE           reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    RETURN          reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    ID              reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    apar            reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    numero          reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+    fcha            reduce using rule 8 (declaracao_variaveis -> tipo ID DV .)
+
+
+state 15
+
+    (7) declaracao_funcoes -> tipo ID apar . parametros fpar declaracao_composta
+    (13) parametros -> . apar PR
+    (14) parametros -> . empty
+    (78) empty -> .
+
+    apar            shift and go to state 18
+    fpar            reduce using rule 78 (empty -> .)
+
+    parametros                     shift and go to state 19
+    empty                          shift and go to state 20
+
+state 16
+
+    (11) DV -> pv .
+
+    INT             reduce using rule 11 (DV -> pv .)
+    VOID            reduce using rule 11 (DV -> pv .)
+    $end            reduce using rule 11 (DV -> pv .)
+    pv              reduce using rule 11 (DV -> pv .)
+    acha            reduce using rule 11 (DV -> pv .)
+    IF              reduce using rule 11 (DV -> pv .)
+    WHILE           reduce using rule 11 (DV -> pv .)
+    RETURN          reduce using rule 11 (DV -> pv .)
+    ID              reduce using rule 11 (DV -> pv .)
+    apar            reduce using rule 11 (DV -> pv .)
+    numero          reduce using rule 11 (DV -> pv .)
+    fcha            reduce using rule 11 (DV -> pv .)
+
+
+state 17
+
+    (12) DV -> acol . numero fcol pv
+
+    numero          shift and go to state 21
+
+
+state 18
+
+    (13) parametros -> apar . PR
+    (16) PR -> . lista_parametros fpar
+    (17) PR -> . VOID fpar
+    (19) lista_parametros -> . param LP
+    (24) param -> . tipo ID P
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    VOID            shift and go to state 24
+    INT             shift and go to state 7
+
+    PR                             shift and go to state 22
+    lista_parametros               shift and go to state 23
+    param                          shift and go to state 25
+    tipo                           shift and go to state 26
+
+state 19
+
+    (7) declaracao_funcoes -> tipo ID apar parametros . fpar declaracao_composta
+
+    fpar            shift and go to state 27
+
+
+state 20
+
+    (14) parametros -> empty .
+
+    fpar            reduce using rule 14 (parametros -> empty .)
+
+
+state 21
+
+    (12) DV -> acol numero . fcol pv
+
+    fcol            shift and go to state 28
+
+
+state 22
+
+    (13) parametros -> apar PR .
+
+    fpar            reduce using rule 13 (parametros -> apar PR .)
+
+
+state 23
+
+    (16) PR -> lista_parametros . fpar
+
+    fpar            shift and go to state 29
+
+
+state 24
+
+    (17) PR -> VOID . fpar
+    (10) tipo -> VOID .
+
+    fpar            shift and go to state 30
+    ID              reduce using rule 10 (tipo -> VOID .)
+
+
+state 25
+
+    (19) lista_parametros -> param . LP
+    (22) LP -> . vir param LP
+    (23) LP -> . empty
+    (78) empty -> .
+
+    vir             shift and go to state 32
+    fpar            reduce using rule 78 (empty -> .)
+
+    LP                             shift and go to state 31
+    empty                          shift and go to state 33
+
+state 26
+
+    (24) param -> tipo . ID P
+
+    ID              shift and go to state 34
+
+
+state 27
+
+    (7) declaracao_funcoes -> tipo ID apar parametros fpar . declaracao_composta
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+
+    acha            shift and go to state 36
+
+    declaracao_composta            shift and go to state 35
+
+state 28
+
+    (12) DV -> acol numero fcol . pv
+
+    pv              shift and go to state 37
+
+
+state 29
+
+    (16) PR -> lista_parametros fpar .
+
+    fpar            reduce using rule 16 (PR -> lista_parametros fpar .)
+
+
+state 30
+
+    (17) PR -> VOID fpar .
+
+    fpar            reduce using rule 17 (PR -> VOID fpar .)
+
+
+state 31
+
+    (19) lista_parametros -> param LP .
+
+    fpar            reduce using rule 19 (lista_parametros -> param LP .)
+
+
+state 32
+
+    (22) LP -> vir . param LP
+    (24) param -> . tipo ID P
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    param                          shift and go to state 38
+    tipo                           shift and go to state 26
+
+state 33
+
+    (23) LP -> empty .
+
+    fpar            reduce using rule 23 (LP -> empty .)
+
+
+state 34
+
+    (24) param -> tipo ID . P
+    (30) P -> . acol fcol
+    (31) P -> . empty
+    (78) empty -> .
+
+    acol            shift and go to state 40
+    vir             reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+
+    P                              shift and go to state 39
+    empty                          shift and go to state 41
+
+state 35
+
+    (7) declaracao_funcoes -> tipo ID apar parametros fpar declaracao_composta .
+
+    INT             reduce using rule 7 (declaracao_funcoes -> tipo ID apar parametros fpar declaracao_composta .)
+    VOID            reduce using rule 7 (declaracao_funcoes -> tipo ID apar parametros fpar declaracao_composta .)
+    $end            reduce using rule 7 (declaracao_funcoes -> tipo ID apar parametros fpar declaracao_composta .)
+
+
+state 36
+
+    (15) declaracao_composta -> acha . declaracoes_locais lista_comandos fcha
+    (39) declaracoes_locais -> . DL
+    (46) DL -> . declaracao_variaveis DL
+    (47) DL -> . empty
+    (8) declaracao_variaveis -> . tipo ID DV
+    (78) empty -> .
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    pv              reduce using rule 78 (empty -> .)
+    acha            reduce using rule 78 (empty -> .)
+    IF              reduce using rule 78 (empty -> .)
+    WHILE           reduce using rule 78 (empty -> .)
+    RETURN          reduce using rule 78 (empty -> .)
+    ID              reduce using rule 78 (empty -> .)
+    apar            reduce using rule 78 (empty -> .)
+    numero          reduce using rule 78 (empty -> .)
+    fcha            reduce using rule 78 (empty -> .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    declaracoes_locais             shift and go to state 42
+    DL                             shift and go to state 43
+    declaracao_variaveis           shift and go to state 44
+    empty                          shift and go to state 45
+    tipo                           shift and go to state 46
+
+state 37
+
+    (12) DV -> acol numero fcol pv .
+
+    INT             reduce using rule 12 (DV -> acol numero fcol pv .)
+    VOID            reduce using rule 12 (DV -> acol numero fcol pv .)
+    $end            reduce using rule 12 (DV -> acol numero fcol pv .)
+    pv              reduce using rule 12 (DV -> acol numero fcol pv .)
+    acha            reduce using rule 12 (DV -> acol numero fcol pv .)
+    IF              reduce using rule 12 (DV -> acol numero fcol pv .)
+    WHILE           reduce using rule 12 (DV -> acol numero fcol pv .)
+    RETURN          reduce using rule 12 (DV -> acol numero fcol pv .)
+    ID              reduce using rule 12 (DV -> acol numero fcol pv .)
+    apar            reduce using rule 12 (DV -> acol numero fcol pv .)
+    numero          reduce using rule 12 (DV -> acol numero fcol pv .)
+    fcha            reduce using rule 12 (DV -> acol numero fcol pv .)
+
+
+state 38
+
+    (22) LP -> vir param . LP
+    (22) LP -> . vir param LP
+    (23) LP -> . empty
+    (78) empty -> .
+
+    vir             shift and go to state 32
+    fpar            reduce using rule 78 (empty -> .)
+
+    LP                             shift and go to state 47
+    empty                          shift and go to state 33
+
+state 39
+
+    (24) param -> tipo ID P .
+
+    vir             reduce using rule 24 (param -> tipo ID P .)
+    fpar            reduce using rule 24 (param -> tipo ID P .)
+
+
+state 40
+
+    (30) P -> acol . fcol
+
+    fcol            shift and go to state 48
+
+
+state 41
+
+    (31) P -> empty .
+
+    vir             reduce using rule 31 (P -> empty .)
+    fpar            reduce using rule 31 (P -> empty .)
+
+
+state 42
+
+    (15) declaracao_composta -> acha declaracoes_locais . lista_comandos fcha
+    (18) lista_comandos -> . LC
+    (20) LC -> . comandos LC
+    (21) LC -> . empty
+    (25) comandos -> . declaracao_expressao
+    (26) comandos -> . declaracao_composta
+    (27) comandos -> . declaracao_selecao
+    (28) comandos -> . declaracao_iteracao
+    (29) comandos -> . declaracao_retorno
+    (78) empty -> .
+    (32) declaracao_expressao -> . expressao pv
+    (33) declaracao_expressao -> . pv
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+    (34) declaracao_selecao -> . IF apar expressao fpar comandos DS
+    (35) declaracao_iteracao -> . WHILE apar expressao fpar comandos
+    (36) declaracao_retorno -> . RETURN DR
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    fcha            reduce using rule 78 (empty -> .)
+    pv              shift and go to state 59
+    acha            shift and go to state 36
+    IF              shift and go to state 60
+    WHILE           shift and go to state 62
+    RETURN          shift and go to state 63
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    lista_comandos                 shift and go to state 49
+    LC                             shift and go to state 50
+    comandos                       shift and go to state 51
+    empty                          shift and go to state 52
+    declaracao_expressao           shift and go to state 53
+    declaracao_composta            shift and go to state 54
+    declaracao_selecao             shift and go to state 55
+    declaracao_iteracao            shift and go to state 56
+    declaracao_retorno             shift and go to state 57
+    expressao                      shift and go to state 58
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 43
+
+    (39) declaracoes_locais -> DL .
+
+    pv              reduce using rule 39 (declaracoes_locais -> DL .)
+    acha            reduce using rule 39 (declaracoes_locais -> DL .)
+    IF              reduce using rule 39 (declaracoes_locais -> DL .)
+    WHILE           reduce using rule 39 (declaracoes_locais -> DL .)
+    RETURN          reduce using rule 39 (declaracoes_locais -> DL .)
+    ID              reduce using rule 39 (declaracoes_locais -> DL .)
+    apar            reduce using rule 39 (declaracoes_locais -> DL .)
+    numero          reduce using rule 39 (declaracoes_locais -> DL .)
+    fcha            reduce using rule 39 (declaracoes_locais -> DL .)
+
+
+state 44
+
+    (46) DL -> declaracao_variaveis . DL
+    (46) DL -> . declaracao_variaveis DL
+    (47) DL -> . empty
+    (8) declaracao_variaveis -> . tipo ID DV
+    (78) empty -> .
+    (9) tipo -> . INT
+    (10) tipo -> . VOID
+
+    pv              reduce using rule 78 (empty -> .)
+    acha            reduce using rule 78 (empty -> .)
+    IF              reduce using rule 78 (empty -> .)
+    WHILE           reduce using rule 78 (empty -> .)
+    RETURN          reduce using rule 78 (empty -> .)
+    ID              reduce using rule 78 (empty -> .)
+    apar            reduce using rule 78 (empty -> .)
+    numero          reduce using rule 78 (empty -> .)
+    fcha            reduce using rule 78 (empty -> .)
+    INT             shift and go to state 7
+    VOID            shift and go to state 8
+
+    declaracao_variaveis           shift and go to state 44
+    DL                             shift and go to state 72
+    empty                          shift and go to state 45
+    tipo                           shift and go to state 46
+
+state 45
+
+    (47) DL -> empty .
+
+    pv              reduce using rule 47 (DL -> empty .)
+    acha            reduce using rule 47 (DL -> empty .)
+    IF              reduce using rule 47 (DL -> empty .)
+    WHILE           reduce using rule 47 (DL -> empty .)
+    RETURN          reduce using rule 47 (DL -> empty .)
+    ID              reduce using rule 47 (DL -> empty .)
+    apar            reduce using rule 47 (DL -> empty .)
+    numero          reduce using rule 47 (DL -> empty .)
+    fcha            reduce using rule 47 (DL -> empty .)
+
+
+state 46
+
+    (8) declaracao_variaveis -> tipo . ID DV
+
+    ID              shift and go to state 73
+
+
+state 47
+
+    (22) LP -> vir param LP .
+
+    fpar            reduce using rule 22 (LP -> vir param LP .)
+
+
+state 48
+
+    (30) P -> acol fcol .
+
+    vir             reduce using rule 30 (P -> acol fcol .)
+    fpar            reduce using rule 30 (P -> acol fcol .)
+
+
+state 49
+
+    (15) declaracao_composta -> acha declaracoes_locais lista_comandos . fcha
+
+    fcha            shift and go to state 74
+
+
+state 50
+
+    (18) lista_comandos -> LC .
+
+    fcha            reduce using rule 18 (lista_comandos -> LC .)
+
+
+state 51
+
+    (20) LC -> comandos . LC
+    (20) LC -> . comandos LC
+    (21) LC -> . empty
+    (25) comandos -> . declaracao_expressao
+    (26) comandos -> . declaracao_composta
+    (27) comandos -> . declaracao_selecao
+    (28) comandos -> . declaracao_iteracao
+    (29) comandos -> . declaracao_retorno
+    (78) empty -> .
+    (32) declaracao_expressao -> . expressao pv
+    (33) declaracao_expressao -> . pv
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+    (34) declaracao_selecao -> . IF apar expressao fpar comandos DS
+    (35) declaracao_iteracao -> . WHILE apar expressao fpar comandos
+    (36) declaracao_retorno -> . RETURN DR
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    fcha            reduce using rule 78 (empty -> .)
+    pv              shift and go to state 59
+    acha            shift and go to state 36
+    IF              shift and go to state 60
+    WHILE           shift and go to state 62
+    RETURN          shift and go to state 63
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    comandos                       shift and go to state 51
+    LC                             shift and go to state 75
+    empty                          shift and go to state 52
+    declaracao_expressao           shift and go to state 53
+    declaracao_composta            shift and go to state 54
+    declaracao_selecao             shift and go to state 55
+    declaracao_iteracao            shift and go to state 56
+    declaracao_retorno             shift and go to state 57
+    expressao                      shift and go to state 58
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 52
+
+    (21) LC -> empty .
+
+    fcha            reduce using rule 21 (LC -> empty .)
+
+
+state 53
+
+    (25) comandos -> declaracao_expressao .
+
+    pv              reduce using rule 25 (comandos -> declaracao_expressao .)
+    acha            reduce using rule 25 (comandos -> declaracao_expressao .)
+    IF              reduce using rule 25 (comandos -> declaracao_expressao .)
+    WHILE           reduce using rule 25 (comandos -> declaracao_expressao .)
+    RETURN          reduce using rule 25 (comandos -> declaracao_expressao .)
+    ID              reduce using rule 25 (comandos -> declaracao_expressao .)
+    apar            reduce using rule 25 (comandos -> declaracao_expressao .)
+    numero          reduce using rule 25 (comandos -> declaracao_expressao .)
+    fcha            reduce using rule 25 (comandos -> declaracao_expressao .)
+    ELSE            reduce using rule 25 (comandos -> declaracao_expressao .)
+
+
+state 54
+
+    (26) comandos -> declaracao_composta .
+
+    pv              reduce using rule 26 (comandos -> declaracao_composta .)
+    acha            reduce using rule 26 (comandos -> declaracao_composta .)
+    IF              reduce using rule 26 (comandos -> declaracao_composta .)
+    WHILE           reduce using rule 26 (comandos -> declaracao_composta .)
+    RETURN          reduce using rule 26 (comandos -> declaracao_composta .)
+    ID              reduce using rule 26 (comandos -> declaracao_composta .)
+    apar            reduce using rule 26 (comandos -> declaracao_composta .)
+    numero          reduce using rule 26 (comandos -> declaracao_composta .)
+    fcha            reduce using rule 26 (comandos -> declaracao_composta .)
+    ELSE            reduce using rule 26 (comandos -> declaracao_composta .)
+
+
+state 55
+
+    (27) comandos -> declaracao_selecao .
+
+    pv              reduce using rule 27 (comandos -> declaracao_selecao .)
+    acha            reduce using rule 27 (comandos -> declaracao_selecao .)
+    IF              reduce using rule 27 (comandos -> declaracao_selecao .)
+    WHILE           reduce using rule 27 (comandos -> declaracao_selecao .)
+    RETURN          reduce using rule 27 (comandos -> declaracao_selecao .)
+    ID              reduce using rule 27 (comandos -> declaracao_selecao .)
+    apar            reduce using rule 27 (comandos -> declaracao_selecao .)
+    numero          reduce using rule 27 (comandos -> declaracao_selecao .)
+    fcha            reduce using rule 27 (comandos -> declaracao_selecao .)
+    ELSE            reduce using rule 27 (comandos -> declaracao_selecao .)
+
+
+state 56
+
+    (28) comandos -> declaracao_iteracao .
+
+    pv              reduce using rule 28 (comandos -> declaracao_iteracao .)
+    acha            reduce using rule 28 (comandos -> declaracao_iteracao .)
+    IF              reduce using rule 28 (comandos -> declaracao_iteracao .)
+    WHILE           reduce using rule 28 (comandos -> declaracao_iteracao .)
+    RETURN          reduce using rule 28 (comandos -> declaracao_iteracao .)
+    ID              reduce using rule 28 (comandos -> declaracao_iteracao .)
+    apar            reduce using rule 28 (comandos -> declaracao_iteracao .)
+    numero          reduce using rule 28 (comandos -> declaracao_iteracao .)
+    fcha            reduce using rule 28 (comandos -> declaracao_iteracao .)
+    ELSE            reduce using rule 28 (comandos -> declaracao_iteracao .)
+
+
+state 57
+
+    (29) comandos -> declaracao_retorno .
+
+    pv              reduce using rule 29 (comandos -> declaracao_retorno .)
+    acha            reduce using rule 29 (comandos -> declaracao_retorno .)
+    IF              reduce using rule 29 (comandos -> declaracao_retorno .)
+    WHILE           reduce using rule 29 (comandos -> declaracao_retorno .)
+    RETURN          reduce using rule 29 (comandos -> declaracao_retorno .)
+    ID              reduce using rule 29 (comandos -> declaracao_retorno .)
+    apar            reduce using rule 29 (comandos -> declaracao_retorno .)
+    numero          reduce using rule 29 (comandos -> declaracao_retorno .)
+    fcha            reduce using rule 29 (comandos -> declaracao_retorno .)
+    ELSE            reduce using rule 29 (comandos -> declaracao_retorno .)
+
+
+state 58
+
+    (32) declaracao_expressao -> expressao . pv
+
+    pv              shift and go to state 76
+
+
+state 59
+
+    (33) declaracao_expressao -> pv .
+
+    pv              reduce using rule 33 (declaracao_expressao -> pv .)
+    acha            reduce using rule 33 (declaracao_expressao -> pv .)
+    IF              reduce using rule 33 (declaracao_expressao -> pv .)
+    WHILE           reduce using rule 33 (declaracao_expressao -> pv .)
+    RETURN          reduce using rule 33 (declaracao_expressao -> pv .)
+    ID              reduce using rule 33 (declaracao_expressao -> pv .)
+    apar            reduce using rule 33 (declaracao_expressao -> pv .)
+    numero          reduce using rule 33 (declaracao_expressao -> pv .)
+    fcha            reduce using rule 33 (declaracao_expressao -> pv .)
+    ELSE            reduce using rule 33 (declaracao_expressao -> pv .)
+
+
+state 60
+
+    (34) declaracao_selecao -> IF . apar expressao fpar comandos DS
+
+    apar            shift and go to state 77
+
+
+state 61
+
+    (66) fator -> apar . expressao fpar
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 78
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 62
+
+    (35) declaracao_iteracao -> WHILE . apar expressao fpar comandos
+
+    apar            shift and go to state 79
+
+
+state 63
+
+    (36) declaracao_retorno -> RETURN . DR
+    (42) DR -> . pv
+    (43) DR -> . expressao pv
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    pv              shift and go to state 81
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    DR                             shift and go to state 80
+    expressao                      shift and go to state 82
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 64
+
+    (37) expressao -> variavel . atr expressao
+    (67) fator -> variavel .
+
+    atr             shift and go to state 83
+    mlt             reduce using rule 67 (fator -> variavel .)
+    divv            reduce using rule 67 (fator -> variavel .)
+    add             reduce using rule 67 (fator -> variavel .)
+    sub             reduce using rule 67 (fator -> variavel .)
+    menig           reduce using rule 67 (fator -> variavel .)
+    men             reduce using rule 67 (fator -> variavel .)
+    mai             reduce using rule 67 (fator -> variavel .)
+    maiig           reduce using rule 67 (fator -> variavel .)
+    ig              reduce using rule 67 (fator -> variavel .)
+    dif             reduce using rule 67 (fator -> variavel .)
+    pv              reduce using rule 67 (fator -> variavel .)
+    fpar            reduce using rule 67 (fator -> variavel .)
+    vir             reduce using rule 67 (fator -> variavel .)
+    fcol            reduce using rule 67 (fator -> variavel .)
+
+
+state 65
+
+    (38) expressao -> expressao_simples .
+
+    pv              reduce using rule 38 (expressao -> expressao_simples .)
+    fpar            reduce using rule 38 (expressao -> expressao_simples .)
+    vir             reduce using rule 38 (expressao -> expressao_simples .)
+    fcol            reduce using rule 38 (expressao -> expressao_simples .)
+
+
+state 66
+
+    (44) variavel -> ID . V
+    (72) ativacao -> ID . apar argumentos fpar
+    (48) V -> . acol expressao fcol
+    (49) V -> . empty
+    (78) empty -> .
+
+    apar            shift and go to state 85
+    acol            shift and go to state 86
+    atr             reduce using rule 78 (empty -> .)
+    mlt             reduce using rule 78 (empty -> .)
+    divv            reduce using rule 78 (empty -> .)
+    add             reduce using rule 78 (empty -> .)
+    sub             reduce using rule 78 (empty -> .)
+    menig           reduce using rule 78 (empty -> .)
+    men             reduce using rule 78 (empty -> .)
+    mai             reduce using rule 78 (empty -> .)
+    maiig           reduce using rule 78 (empty -> .)
+    ig              reduce using rule 78 (empty -> .)
+    dif             reduce using rule 78 (empty -> .)
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    V                              shift and go to state 84
+    empty                          shift and go to state 87
+
+state 67
+
+    (45) expressao_simples -> soma_expressao . ES
+    (51) ES -> . op_relacional soma_expressao ES
+    (52) ES -> . empty
+    (56) op_relacional -> . menig
+    (57) op_relacional -> . men
+    (58) op_relacional -> . mai
+    (59) op_relacional -> . maiig
+    (60) op_relacional -> . ig
+    (61) op_relacional -> . dif
+    (78) empty -> .
+
+    menig           shift and go to state 91
+    men             shift and go to state 92
+    mai             shift and go to state 93
+    maiig           shift and go to state 94
+    ig              shift and go to state 95
+    dif             shift and go to state 96
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    ES                             shift and go to state 88
+    op_relacional                  shift and go to state 89
+    empty                          shift and go to state 90
+
+state 68
+
+    (50) soma_expressao -> termo . SE
+    (54) SE -> . soma termo SE
+    (55) SE -> . empty
+    (62) soma -> . add
+    (63) soma -> . sub
+    (78) empty -> .
+
+    add             shift and go to state 100
+    sub             shift and go to state 101
+    menig           reduce using rule 78 (empty -> .)
+    men             reduce using rule 78 (empty -> .)
+    mai             reduce using rule 78 (empty -> .)
+    maiig           reduce using rule 78 (empty -> .)
+    ig              reduce using rule 78 (empty -> .)
+    dif             reduce using rule 78 (empty -> .)
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    SE                             shift and go to state 97
+    soma                           shift and go to state 98
+    empty                          shift and go to state 99
+
+state 69
+
+    (53) termo -> fator . T
+    (70) T -> . mult fator T
+    (71) T -> . empty
+    (64) mult -> . mlt
+    (65) mult -> . divv
+    (78) empty -> .
+
+    mlt             shift and go to state 105
+    divv            shift and go to state 106
+    add             reduce using rule 78 (empty -> .)
+    sub             reduce using rule 78 (empty -> .)
+    menig           reduce using rule 78 (empty -> .)
+    men             reduce using rule 78 (empty -> .)
+    mai             reduce using rule 78 (empty -> .)
+    maiig           reduce using rule 78 (empty -> .)
+    ig              reduce using rule 78 (empty -> .)
+    dif             reduce using rule 78 (empty -> .)
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    T                              shift and go to state 102
+    mult                           shift and go to state 103
+    empty                          shift and go to state 104
+
+state 70
+
+    (68) fator -> ativacao .
+
+    mlt             reduce using rule 68 (fator -> ativacao .)
+    divv            reduce using rule 68 (fator -> ativacao .)
+    add             reduce using rule 68 (fator -> ativacao .)
+    sub             reduce using rule 68 (fator -> ativacao .)
+    menig           reduce using rule 68 (fator -> ativacao .)
+    men             reduce using rule 68 (fator -> ativacao .)
+    mai             reduce using rule 68 (fator -> ativacao .)
+    maiig           reduce using rule 68 (fator -> ativacao .)
+    ig              reduce using rule 68 (fator -> ativacao .)
+    dif             reduce using rule 68 (fator -> ativacao .)
+    pv              reduce using rule 68 (fator -> ativacao .)
+    fpar            reduce using rule 68 (fator -> ativacao .)
+    vir             reduce using rule 68 (fator -> ativacao .)
+    fcol            reduce using rule 68 (fator -> ativacao .)
+
+
+state 71
+
+    (69) fator -> numero .
+
+    mlt             reduce using rule 69 (fator -> numero .)
+    divv            reduce using rule 69 (fator -> numero .)
+    add             reduce using rule 69 (fator -> numero .)
+    sub             reduce using rule 69 (fator -> numero .)
+    menig           reduce using rule 69 (fator -> numero .)
+    men             reduce using rule 69 (fator -> numero .)
+    mai             reduce using rule 69 (fator -> numero .)
+    maiig           reduce using rule 69 (fator -> numero .)
+    ig              reduce using rule 69 (fator -> numero .)
+    dif             reduce using rule 69 (fator -> numero .)
+    pv              reduce using rule 69 (fator -> numero .)
+    fpar            reduce using rule 69 (fator -> numero .)
+    vir             reduce using rule 69 (fator -> numero .)
+    fcol            reduce using rule 69 (fator -> numero .)
+
+
+state 72
+
+    (46) DL -> declaracao_variaveis DL .
+
+    pv              reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    acha            reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    IF              reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    WHILE           reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    RETURN          reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    ID              reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    apar            reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    numero          reduce using rule 46 (DL -> declaracao_variaveis DL .)
+    fcha            reduce using rule 46 (DL -> declaracao_variaveis DL .)
+
+
+state 73
+
+    (8) declaracao_variaveis -> tipo ID . DV
+    (11) DV -> . pv
+    (12) DV -> . acol numero fcol pv
+
+    pv              shift and go to state 16
+    acol            shift and go to state 17
+
+    DV                             shift and go to state 14
+
+state 74
+
+    (15) declaracao_composta -> acha declaracoes_locais lista_comandos fcha .
+
+    INT             reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    VOID            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    $end            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    pv              reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    acha            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    IF              reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    WHILE           reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    RETURN          reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    ID              reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    apar            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    numero          reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    fcha            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+    ELSE            reduce using rule 15 (declaracao_composta -> acha declaracoes_locais lista_comandos fcha .)
+
+
+state 75
+
+    (20) LC -> comandos LC .
+
+    fcha            reduce using rule 20 (LC -> comandos LC .)
+
+
+state 76
+
+    (32) declaracao_expressao -> expressao pv .
+
+    pv              reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    acha            reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    IF              reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    WHILE           reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    RETURN          reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    ID              reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    apar            reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    numero          reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    fcha            reduce using rule 32 (declaracao_expressao -> expressao pv .)
+    ELSE            reduce using rule 32 (declaracao_expressao -> expressao pv .)
+
+
+state 77
+
+    (34) declaracao_selecao -> IF apar . expressao fpar comandos DS
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 107
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 78
+
+    (66) fator -> apar expressao . fpar
+
+    fpar            shift and go to state 108
+
+
+state 79
+
+    (35) declaracao_iteracao -> WHILE apar . expressao fpar comandos
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 109
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 80
+
+    (36) declaracao_retorno -> RETURN DR .
+
+    pv              reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    acha            reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    IF              reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    WHILE           reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    RETURN          reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    ID              reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    apar            reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    numero          reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    fcha            reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+    ELSE            reduce using rule 36 (declaracao_retorno -> RETURN DR .)
+
+
+state 81
+
+    (42) DR -> pv .
+
+    pv              reduce using rule 42 (DR -> pv .)
+    acha            reduce using rule 42 (DR -> pv .)
+    IF              reduce using rule 42 (DR -> pv .)
+    WHILE           reduce using rule 42 (DR -> pv .)
+    RETURN          reduce using rule 42 (DR -> pv .)
+    ID              reduce using rule 42 (DR -> pv .)
+    apar            reduce using rule 42 (DR -> pv .)
+    numero          reduce using rule 42 (DR -> pv .)
+    fcha            reduce using rule 42 (DR -> pv .)
+    ELSE            reduce using rule 42 (DR -> pv .)
+
+
+state 82
+
+    (43) DR -> expressao . pv
+
+    pv              shift and go to state 110
+
+
+state 83
+
+    (37) expressao -> variavel atr . expressao
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    variavel                       shift and go to state 64
+    expressao                      shift and go to state 111
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 84
+
+    (44) variavel -> ID V .
+
+    atr             reduce using rule 44 (variavel -> ID V .)
+    mlt             reduce using rule 44 (variavel -> ID V .)
+    divv            reduce using rule 44 (variavel -> ID V .)
+    add             reduce using rule 44 (variavel -> ID V .)
+    sub             reduce using rule 44 (variavel -> ID V .)
+    menig           reduce using rule 44 (variavel -> ID V .)
+    men             reduce using rule 44 (variavel -> ID V .)
+    mai             reduce using rule 44 (variavel -> ID V .)
+    maiig           reduce using rule 44 (variavel -> ID V .)
+    ig              reduce using rule 44 (variavel -> ID V .)
+    dif             reduce using rule 44 (variavel -> ID V .)
+    pv              reduce using rule 44 (variavel -> ID V .)
+    fpar            reduce using rule 44 (variavel -> ID V .)
+    vir             reduce using rule 44 (variavel -> ID V .)
+    fcol            reduce using rule 44 (variavel -> ID V .)
+
+
+state 85
+
+    (72) ativacao -> ID apar . argumentos fpar
+    (73) argumentos -> . lista_argumentos
+    (74) argumentos -> . empty
+    (75) lista_argumentos -> . expressao LA
+    (78) empty -> .
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    fpar            reduce using rule 78 (empty -> .)
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    argumentos                     shift and go to state 112
+    lista_argumentos               shift and go to state 113
+    empty                          shift and go to state 114
+    expressao                      shift and go to state 115
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 86
+
+    (48) V -> acol . expressao fcol
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 116
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 87
+
+    (49) V -> empty .
+
+    atr             reduce using rule 49 (V -> empty .)
+    mlt             reduce using rule 49 (V -> empty .)
+    divv            reduce using rule 49 (V -> empty .)
+    add             reduce using rule 49 (V -> empty .)
+    sub             reduce using rule 49 (V -> empty .)
+    menig           reduce using rule 49 (V -> empty .)
+    men             reduce using rule 49 (V -> empty .)
+    mai             reduce using rule 49 (V -> empty .)
+    maiig           reduce using rule 49 (V -> empty .)
+    ig              reduce using rule 49 (V -> empty .)
+    dif             reduce using rule 49 (V -> empty .)
+    pv              reduce using rule 49 (V -> empty .)
+    fpar            reduce using rule 49 (V -> empty .)
+    vir             reduce using rule 49 (V -> empty .)
+    fcol            reduce using rule 49 (V -> empty .)
+
+
+state 88
+
+    (45) expressao_simples -> soma_expressao ES .
+
+    pv              reduce using rule 45 (expressao_simples -> soma_expressao ES .)
+    fpar            reduce using rule 45 (expressao_simples -> soma_expressao ES .)
+    vir             reduce using rule 45 (expressao_simples -> soma_expressao ES .)
+    fcol            reduce using rule 45 (expressao_simples -> soma_expressao ES .)
+
+
+state 89
+
+    (51) ES -> op_relacional . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (44) variavel -> . ID V
+    (72) ativacao -> . ID apar argumentos fpar
+
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+    ID              shift and go to state 66
+
+    soma_expressao                 shift and go to state 117
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    variavel                       shift and go to state 118
+    ativacao                       shift and go to state 70
+
+state 90
+
+    (52) ES -> empty .
+
+    pv              reduce using rule 52 (ES -> empty .)
+    fpar            reduce using rule 52 (ES -> empty .)
+    vir             reduce using rule 52 (ES -> empty .)
+    fcol            reduce using rule 52 (ES -> empty .)
+
+
+state 91
+
+    (56) op_relacional -> menig .
+
+    apar            reduce using rule 56 (op_relacional -> menig .)
+    numero          reduce using rule 56 (op_relacional -> menig .)
+    ID              reduce using rule 56 (op_relacional -> menig .)
+
+
+state 92
+
+    (57) op_relacional -> men .
+
+    apar            reduce using rule 57 (op_relacional -> men .)
+    numero          reduce using rule 57 (op_relacional -> men .)
+    ID              reduce using rule 57 (op_relacional -> men .)
+
+
+state 93
+
+    (58) op_relacional -> mai .
+
+    apar            reduce using rule 58 (op_relacional -> mai .)
+    numero          reduce using rule 58 (op_relacional -> mai .)
+    ID              reduce using rule 58 (op_relacional -> mai .)
+
+
+state 94
+
+    (59) op_relacional -> maiig .
+
+    apar            reduce using rule 59 (op_relacional -> maiig .)
+    numero          reduce using rule 59 (op_relacional -> maiig .)
+    ID              reduce using rule 59 (op_relacional -> maiig .)
+
+
+state 95
+
+    (60) op_relacional -> ig .
+
+    apar            reduce using rule 60 (op_relacional -> ig .)
+    numero          reduce using rule 60 (op_relacional -> ig .)
+    ID              reduce using rule 60 (op_relacional -> ig .)
+
+
+state 96
+
+    (61) op_relacional -> dif .
+
+    apar            reduce using rule 61 (op_relacional -> dif .)
+    numero          reduce using rule 61 (op_relacional -> dif .)
+    ID              reduce using rule 61 (op_relacional -> dif .)
+
+
+state 97
+
+    (50) soma_expressao -> termo SE .
+
+    menig           reduce using rule 50 (soma_expressao -> termo SE .)
+    men             reduce using rule 50 (soma_expressao -> termo SE .)
+    mai             reduce using rule 50 (soma_expressao -> termo SE .)
+    maiig           reduce using rule 50 (soma_expressao -> termo SE .)
+    ig              reduce using rule 50 (soma_expressao -> termo SE .)
+    dif             reduce using rule 50 (soma_expressao -> termo SE .)
+    pv              reduce using rule 50 (soma_expressao -> termo SE .)
+    fpar            reduce using rule 50 (soma_expressao -> termo SE .)
+    vir             reduce using rule 50 (soma_expressao -> termo SE .)
+    fcol            reduce using rule 50 (soma_expressao -> termo SE .)
+
+
+state 98
+
+    (54) SE -> soma . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (44) variavel -> . ID V
+    (72) ativacao -> . ID apar argumentos fpar
+
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+    ID              shift and go to state 66
+
+    termo                          shift and go to state 119
+    fator                          shift and go to state 69
+    variavel                       shift and go to state 118
+    ativacao                       shift and go to state 70
+
+state 99
+
+    (55) SE -> empty .
+
+    menig           reduce using rule 55 (SE -> empty .)
+    men             reduce using rule 55 (SE -> empty .)
+    mai             reduce using rule 55 (SE -> empty .)
+    maiig           reduce using rule 55 (SE -> empty .)
+    ig              reduce using rule 55 (SE -> empty .)
+    dif             reduce using rule 55 (SE -> empty .)
+    pv              reduce using rule 55 (SE -> empty .)
+    fpar            reduce using rule 55 (SE -> empty .)
+    vir             reduce using rule 55 (SE -> empty .)
+    fcol            reduce using rule 55 (SE -> empty .)
+
+
+state 100
+
+    (62) soma -> add .
+
+    apar            reduce using rule 62 (soma -> add .)
+    numero          reduce using rule 62 (soma -> add .)
+    ID              reduce using rule 62 (soma -> add .)
+
+
+state 101
+
+    (63) soma -> sub .
+
+    apar            reduce using rule 63 (soma -> sub .)
+    numero          reduce using rule 63 (soma -> sub .)
+    ID              reduce using rule 63 (soma -> sub .)
+
+
+state 102
+
+    (53) termo -> fator T .
+
+    add             reduce using rule 53 (termo -> fator T .)
+    sub             reduce using rule 53 (termo -> fator T .)
+    menig           reduce using rule 53 (termo -> fator T .)
+    men             reduce using rule 53 (termo -> fator T .)
+    mai             reduce using rule 53 (termo -> fator T .)
+    maiig           reduce using rule 53 (termo -> fator T .)
+    ig              reduce using rule 53 (termo -> fator T .)
+    dif             reduce using rule 53 (termo -> fator T .)
+    pv              reduce using rule 53 (termo -> fator T .)
+    fpar            reduce using rule 53 (termo -> fator T .)
+    vir             reduce using rule 53 (termo -> fator T .)
+    fcol            reduce using rule 53 (termo -> fator T .)
+
+
+state 103
+
+    (70) T -> mult . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (44) variavel -> . ID V
+    (72) ativacao -> . ID apar argumentos fpar
+
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+    ID              shift and go to state 66
+
+    fator                          shift and go to state 120
+    variavel                       shift and go to state 118
+    ativacao                       shift and go to state 70
+
+state 104
+
+    (71) T -> empty .
+
+    add             reduce using rule 71 (T -> empty .)
+    sub             reduce using rule 71 (T -> empty .)
+    menig           reduce using rule 71 (T -> empty .)
+    men             reduce using rule 71 (T -> empty .)
+    mai             reduce using rule 71 (T -> empty .)
+    maiig           reduce using rule 71 (T -> empty .)
+    ig              reduce using rule 71 (T -> empty .)
+    dif             reduce using rule 71 (T -> empty .)
+    pv              reduce using rule 71 (T -> empty .)
+    fpar            reduce using rule 71 (T -> empty .)
+    vir             reduce using rule 71 (T -> empty .)
+    fcol            reduce using rule 71 (T -> empty .)
+
+
+state 105
+
+    (64) mult -> mlt .
+
+    apar            reduce using rule 64 (mult -> mlt .)
+    numero          reduce using rule 64 (mult -> mlt .)
+    ID              reduce using rule 64 (mult -> mlt .)
+
+
+state 106
+
+    (65) mult -> divv .
+
+    apar            reduce using rule 65 (mult -> divv .)
+    numero          reduce using rule 65 (mult -> divv .)
+    ID              reduce using rule 65 (mult -> divv .)
+
+
+state 107
+
+    (34) declaracao_selecao -> IF apar expressao . fpar comandos DS
+
+    fpar            shift and go to state 121
+
+
+state 108
+
+    (66) fator -> apar expressao fpar .
+
+    mlt             reduce using rule 66 (fator -> apar expressao fpar .)
+    divv            reduce using rule 66 (fator -> apar expressao fpar .)
+    add             reduce using rule 66 (fator -> apar expressao fpar .)
+    sub             reduce using rule 66 (fator -> apar expressao fpar .)
+    menig           reduce using rule 66 (fator -> apar expressao fpar .)
+    men             reduce using rule 66 (fator -> apar expressao fpar .)
+    mai             reduce using rule 66 (fator -> apar expressao fpar .)
+    maiig           reduce using rule 66 (fator -> apar expressao fpar .)
+    ig              reduce using rule 66 (fator -> apar expressao fpar .)
+    dif             reduce using rule 66 (fator -> apar expressao fpar .)
+    pv              reduce using rule 66 (fator -> apar expressao fpar .)
+    fpar            reduce using rule 66 (fator -> apar expressao fpar .)
+    vir             reduce using rule 66 (fator -> apar expressao fpar .)
+    fcol            reduce using rule 66 (fator -> apar expressao fpar .)
+
+
+state 109
+
+    (35) declaracao_iteracao -> WHILE apar expressao . fpar comandos
+
+    fpar            shift and go to state 122
+
+
+state 110
+
+    (43) DR -> expressao pv .
+
+    pv              reduce using rule 43 (DR -> expressao pv .)
+    acha            reduce using rule 43 (DR -> expressao pv .)
+    IF              reduce using rule 43 (DR -> expressao pv .)
+    WHILE           reduce using rule 43 (DR -> expressao pv .)
+    RETURN          reduce using rule 43 (DR -> expressao pv .)
+    ID              reduce using rule 43 (DR -> expressao pv .)
+    apar            reduce using rule 43 (DR -> expressao pv .)
+    numero          reduce using rule 43 (DR -> expressao pv .)
+    fcha            reduce using rule 43 (DR -> expressao pv .)
+    ELSE            reduce using rule 43 (DR -> expressao pv .)
+
+
+state 111
+
+    (37) expressao -> variavel atr expressao .
+
+    pv              reduce using rule 37 (expressao -> variavel atr expressao .)
+    fpar            reduce using rule 37 (expressao -> variavel atr expressao .)
+    vir             reduce using rule 37 (expressao -> variavel atr expressao .)
+    fcol            reduce using rule 37 (expressao -> variavel atr expressao .)
+
+
+state 112
+
+    (72) ativacao -> ID apar argumentos . fpar
+
+    fpar            shift and go to state 123
+
+
+state 113
+
+    (73) argumentos -> lista_argumentos .
+
+    fpar            reduce using rule 73 (argumentos -> lista_argumentos .)
+
+
+state 114
+
+    (74) argumentos -> empty .
+
+    fpar            reduce using rule 74 (argumentos -> empty .)
+
+
+state 115
+
+    (75) lista_argumentos -> expressao . LA
+    (76) LA -> . vir expressao LA
+    (77) LA -> . empty
+    (78) empty -> .
+
+    vir             shift and go to state 125
+    fpar            reduce using rule 78 (empty -> .)
+
+    LA                             shift and go to state 124
+    empty                          shift and go to state 126
+
+state 116
+
+    (48) V -> acol expressao . fcol
+
+    fcol            shift and go to state 127
+
+
+state 117
+
+    (51) ES -> op_relacional soma_expressao . ES
+    (51) ES -> . op_relacional soma_expressao ES
+    (52) ES -> . empty
+    (56) op_relacional -> . menig
+    (57) op_relacional -> . men
+    (58) op_relacional -> . mai
+    (59) op_relacional -> . maiig
+    (60) op_relacional -> . ig
+    (61) op_relacional -> . dif
+    (78) empty -> .
+
+    menig           shift and go to state 91
+    men             shift and go to state 92
+    mai             shift and go to state 93
+    maiig           shift and go to state 94
+    ig              shift and go to state 95
+    dif             shift and go to state 96
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    op_relacional                  shift and go to state 89
+    ES                             shift and go to state 128
+    empty                          shift and go to state 90
+
+state 118
+
+    (67) fator -> variavel .
+
+    mlt             reduce using rule 67 (fator -> variavel .)
+    divv            reduce using rule 67 (fator -> variavel .)
+    add             reduce using rule 67 (fator -> variavel .)
+    sub             reduce using rule 67 (fator -> variavel .)
+    menig           reduce using rule 67 (fator -> variavel .)
+    men             reduce using rule 67 (fator -> variavel .)
+    mai             reduce using rule 67 (fator -> variavel .)
+    maiig           reduce using rule 67 (fator -> variavel .)
+    ig              reduce using rule 67 (fator -> variavel .)
+    dif             reduce using rule 67 (fator -> variavel .)
+    pv              reduce using rule 67 (fator -> variavel .)
+    fpar            reduce using rule 67 (fator -> variavel .)
+    vir             reduce using rule 67 (fator -> variavel .)
+    fcol            reduce using rule 67 (fator -> variavel .)
+
+
+state 119
+
+    (54) SE -> soma termo . SE
+    (54) SE -> . soma termo SE
+    (55) SE -> . empty
+    (62) soma -> . add
+    (63) soma -> . sub
+    (78) empty -> .
+
+    add             shift and go to state 100
+    sub             shift and go to state 101
+    menig           reduce using rule 78 (empty -> .)
+    men             reduce using rule 78 (empty -> .)
+    mai             reduce using rule 78 (empty -> .)
+    maiig           reduce using rule 78 (empty -> .)
+    ig              reduce using rule 78 (empty -> .)
+    dif             reduce using rule 78 (empty -> .)
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    soma                           shift and go to state 98
+    SE                             shift and go to state 129
+    empty                          shift and go to state 99
+
+state 120
+
+    (70) T -> mult fator . T
+    (70) T -> . mult fator T
+    (71) T -> . empty
+    (64) mult -> . mlt
+    (65) mult -> . divv
+    (78) empty -> .
+
+    mlt             shift and go to state 105
+    divv            shift and go to state 106
+    add             reduce using rule 78 (empty -> .)
+    sub             reduce using rule 78 (empty -> .)
+    menig           reduce using rule 78 (empty -> .)
+    men             reduce using rule 78 (empty -> .)
+    mai             reduce using rule 78 (empty -> .)
+    maiig           reduce using rule 78 (empty -> .)
+    ig              reduce using rule 78 (empty -> .)
+    dif             reduce using rule 78 (empty -> .)
+    pv              reduce using rule 78 (empty -> .)
+    fpar            reduce using rule 78 (empty -> .)
+    vir             reduce using rule 78 (empty -> .)
+    fcol            reduce using rule 78 (empty -> .)
+
+    mult                           shift and go to state 103
+    T                              shift and go to state 130
+    empty                          shift and go to state 104
+
+state 121
+
+    (34) declaracao_selecao -> IF apar expressao fpar . comandos DS
+    (25) comandos -> . declaracao_expressao
+    (26) comandos -> . declaracao_composta
+    (27) comandos -> . declaracao_selecao
+    (28) comandos -> . declaracao_iteracao
+    (29) comandos -> . declaracao_retorno
+    (32) declaracao_expressao -> . expressao pv
+    (33) declaracao_expressao -> . pv
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+    (34) declaracao_selecao -> . IF apar expressao fpar comandos DS
+    (35) declaracao_iteracao -> . WHILE apar expressao fpar comandos
+    (36) declaracao_retorno -> . RETURN DR
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    pv              shift and go to state 59
+    acha            shift and go to state 36
+    IF              shift and go to state 60
+    WHILE           shift and go to state 62
+    RETURN          shift and go to state 63
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 58
+    comandos                       shift and go to state 131
+    declaracao_expressao           shift and go to state 53
+    declaracao_composta            shift and go to state 54
+    declaracao_selecao             shift and go to state 55
+    declaracao_iteracao            shift and go to state 56
+    declaracao_retorno             shift and go to state 57
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 122
+
+    (35) declaracao_iteracao -> WHILE apar expressao fpar . comandos
+    (25) comandos -> . declaracao_expressao
+    (26) comandos -> . declaracao_composta
+    (27) comandos -> . declaracao_selecao
+    (28) comandos -> . declaracao_iteracao
+    (29) comandos -> . declaracao_retorno
+    (32) declaracao_expressao -> . expressao pv
+    (33) declaracao_expressao -> . pv
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+    (34) declaracao_selecao -> . IF apar expressao fpar comandos DS
+    (35) declaracao_iteracao -> . WHILE apar expressao fpar comandos
+    (36) declaracao_retorno -> . RETURN DR
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    pv              shift and go to state 59
+    acha            shift and go to state 36
+    IF              shift and go to state 60
+    WHILE           shift and go to state 62
+    RETURN          shift and go to state 63
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 58
+    comandos                       shift and go to state 132
+    declaracao_expressao           shift and go to state 53
+    declaracao_composta            shift and go to state 54
+    declaracao_selecao             shift and go to state 55
+    declaracao_iteracao            shift and go to state 56
+    declaracao_retorno             shift and go to state 57
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 123
+
+    (72) ativacao -> ID apar argumentos fpar .
+
+    mlt             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    divv            reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    add             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    sub             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    menig           reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    men             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    mai             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    maiig           reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    ig              reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    dif             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    pv              reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    fpar            reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    vir             reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+    fcol            reduce using rule 72 (ativacao -> ID apar argumentos fpar .)
+
+
+state 124
+
+    (75) lista_argumentos -> expressao LA .
+
+    fpar            reduce using rule 75 (lista_argumentos -> expressao LA .)
+
+
+state 125
+
+    (76) LA -> vir . expressao LA
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    expressao                      shift and go to state 133
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 126
+
+    (77) LA -> empty .
+
+    fpar            reduce using rule 77 (LA -> empty .)
+
+
+state 127
+
+    (48) V -> acol expressao fcol .
+
+    atr             reduce using rule 48 (V -> acol expressao fcol .)
+    mlt             reduce using rule 48 (V -> acol expressao fcol .)
+    divv            reduce using rule 48 (V -> acol expressao fcol .)
+    add             reduce using rule 48 (V -> acol expressao fcol .)
+    sub             reduce using rule 48 (V -> acol expressao fcol .)
+    menig           reduce using rule 48 (V -> acol expressao fcol .)
+    men             reduce using rule 48 (V -> acol expressao fcol .)
+    mai             reduce using rule 48 (V -> acol expressao fcol .)
+    maiig           reduce using rule 48 (V -> acol expressao fcol .)
+    ig              reduce using rule 48 (V -> acol expressao fcol .)
+    dif             reduce using rule 48 (V -> acol expressao fcol .)
+    pv              reduce using rule 48 (V -> acol expressao fcol .)
+    fpar            reduce using rule 48 (V -> acol expressao fcol .)
+    vir             reduce using rule 48 (V -> acol expressao fcol .)
+    fcol            reduce using rule 48 (V -> acol expressao fcol .)
+
+
+state 128
+
+    (51) ES -> op_relacional soma_expressao ES .
+
+    pv              reduce using rule 51 (ES -> op_relacional soma_expressao ES .)
+    fpar            reduce using rule 51 (ES -> op_relacional soma_expressao ES .)
+    vir             reduce using rule 51 (ES -> op_relacional soma_expressao ES .)
+    fcol            reduce using rule 51 (ES -> op_relacional soma_expressao ES .)
+
+
+state 129
+
+    (54) SE -> soma termo SE .
+
+    menig           reduce using rule 54 (SE -> soma termo SE .)
+    men             reduce using rule 54 (SE -> soma termo SE .)
+    mai             reduce using rule 54 (SE -> soma termo SE .)
+    maiig           reduce using rule 54 (SE -> soma termo SE .)
+    ig              reduce using rule 54 (SE -> soma termo SE .)
+    dif             reduce using rule 54 (SE -> soma termo SE .)
+    pv              reduce using rule 54 (SE -> soma termo SE .)
+    fpar            reduce using rule 54 (SE -> soma termo SE .)
+    vir             reduce using rule 54 (SE -> soma termo SE .)
+    fcol            reduce using rule 54 (SE -> soma termo SE .)
+
+
+state 130
+
+    (70) T -> mult fator T .
+
+    add             reduce using rule 70 (T -> mult fator T .)
+    sub             reduce using rule 70 (T -> mult fator T .)
+    menig           reduce using rule 70 (T -> mult fator T .)
+    men             reduce using rule 70 (T -> mult fator T .)
+    mai             reduce using rule 70 (T -> mult fator T .)
+    maiig           reduce using rule 70 (T -> mult fator T .)
+    ig              reduce using rule 70 (T -> mult fator T .)
+    dif             reduce using rule 70 (T -> mult fator T .)
+    pv              reduce using rule 70 (T -> mult fator T .)
+    fpar            reduce using rule 70 (T -> mult fator T .)
+    vir             reduce using rule 70 (T -> mult fator T .)
+    fcol            reduce using rule 70 (T -> mult fator T .)
+
+
+state 131
+
+    (34) declaracao_selecao -> IF apar expressao fpar comandos . DS
+    (40) DS -> . ELSE comandos
+    (41) DS -> . empty
+    (78) empty -> .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 135
+    pv              reduce using rule 78 (empty -> .)
+    acha            reduce using rule 78 (empty -> .)
+    IF              reduce using rule 78 (empty -> .)
+    WHILE           reduce using rule 78 (empty -> .)
+    RETURN          reduce using rule 78 (empty -> .)
+    ID              reduce using rule 78 (empty -> .)
+    apar            reduce using rule 78 (empty -> .)
+    numero          reduce using rule 78 (empty -> .)
+    fcha            reduce using rule 78 (empty -> .)
+
+  ! ELSE            [ reduce using rule 78 (empty -> .) ]
+
+    DS                             shift and go to state 134
+    empty                          shift and go to state 136
+
+state 132
+
+    (35) declaracao_iteracao -> WHILE apar expressao fpar comandos .
+
+    pv              reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    acha            reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    IF              reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    WHILE           reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    RETURN          reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    ID              reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    apar            reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    numero          reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    fcha            reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+    ELSE            reduce using rule 35 (declaracao_iteracao -> WHILE apar expressao fpar comandos .)
+
+
+state 133
+
+    (76) LA -> vir expressao . LA
+    (76) LA -> . vir expressao LA
+    (77) LA -> . empty
+    (78) empty -> .
+
+    vir             shift and go to state 125
+    fpar            reduce using rule 78 (empty -> .)
+
+    LA                             shift and go to state 137
+    empty                          shift and go to state 126
+
+state 134
+
+    (34) declaracao_selecao -> IF apar expressao fpar comandos DS .
+
+    pv              reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    acha            reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    IF              reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    WHILE           reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    RETURN          reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    ID              reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    apar            reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    numero          reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    fcha            reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+    ELSE            reduce using rule 34 (declaracao_selecao -> IF apar expressao fpar comandos DS .)
+
+
+state 135
+
+    (40) DS -> ELSE . comandos
+    (25) comandos -> . declaracao_expressao
+    (26) comandos -> . declaracao_composta
+    (27) comandos -> . declaracao_selecao
+    (28) comandos -> . declaracao_iteracao
+    (29) comandos -> . declaracao_retorno
+    (32) declaracao_expressao -> . expressao pv
+    (33) declaracao_expressao -> . pv
+    (15) declaracao_composta -> . acha declaracoes_locais lista_comandos fcha
+    (34) declaracao_selecao -> . IF apar expressao fpar comandos DS
+    (35) declaracao_iteracao -> . WHILE apar expressao fpar comandos
+    (36) declaracao_retorno -> . RETURN DR
+    (37) expressao -> . variavel atr expressao
+    (38) expressao -> . expressao_simples
+    (44) variavel -> . ID V
+    (45) expressao_simples -> . soma_expressao ES
+    (50) soma_expressao -> . termo SE
+    (53) termo -> . fator T
+    (66) fator -> . apar expressao fpar
+    (67) fator -> . variavel
+    (68) fator -> . ativacao
+    (69) fator -> . numero
+    (72) ativacao -> . ID apar argumentos fpar
+
+    pv              shift and go to state 59
+    acha            shift and go to state 36
+    IF              shift and go to state 60
+    WHILE           shift and go to state 62
+    RETURN          shift and go to state 63
+    ID              shift and go to state 66
+    apar            shift and go to state 61
+    numero          shift and go to state 71
+
+    comandos                       shift and go to state 138
+    declaracao_expressao           shift and go to state 53
+    declaracao_composta            shift and go to state 54
+    declaracao_selecao             shift and go to state 55
+    declaracao_iteracao            shift and go to state 56
+    declaracao_retorno             shift and go to state 57
+    expressao                      shift and go to state 58
+    variavel                       shift and go to state 64
+    expressao_simples              shift and go to state 65
+    soma_expressao                 shift and go to state 67
+    termo                          shift and go to state 68
+    fator                          shift and go to state 69
+    ativacao                       shift and go to state 70
+
+state 136
+
+    (41) DS -> empty .
+
+    ELSE            reduce using rule 41 (DS -> empty .)
+    pv              reduce using rule 41 (DS -> empty .)
+    acha            reduce using rule 41 (DS -> empty .)
+    IF              reduce using rule 41 (DS -> empty .)
+    WHILE           reduce using rule 41 (DS -> empty .)
+    RETURN          reduce using rule 41 (DS -> empty .)
+    ID              reduce using rule 41 (DS -> empty .)
+    apar            reduce using rule 41 (DS -> empty .)
+    numero          reduce using rule 41 (DS -> empty .)
+    fcha            reduce using rule 41 (DS -> empty .)
+
+
+state 137
+
+    (76) LA -> vir expressao LA .
+
+    fpar            reduce using rule 76 (LA -> vir expressao LA .)
+
+
+state 138
+
+    (40) DS -> ELSE comandos .
+
+    ELSE            reduce using rule 40 (DS -> ELSE comandos .)
+    pv              reduce using rule 40 (DS -> ELSE comandos .)
+    acha            reduce using rule 40 (DS -> ELSE comandos .)
+    IF              reduce using rule 40 (DS -> ELSE comandos .)
+    WHILE           reduce using rule 40 (DS -> ELSE comandos .)
+    RETURN          reduce using rule 40 (DS -> ELSE comandos .)
+    ID              reduce using rule 40 (DS -> ELSE comandos .)
+    apar            reduce using rule 40 (DS -> ELSE comandos .)
+    numero          reduce using rule 40 (DS -> ELSE comandos .)
+    fcha            reduce using rule 40 (DS -> ELSE comandos .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 131 resolved as shift
